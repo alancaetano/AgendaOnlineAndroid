@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="agendaonline.agendaonlineapp.ChatActivity"
+    android:orientation="vertical"
+    android:background="#BBBBBB"
+    android:weightSum="100">
+
+
+    <ListView android:id="@+id/lista_chat"
+        android:layout_width="fill_parent"
+        android:layout_height="0px"
+        android:dividerHeight="5sp"
+        android:divider="@null"
+        android:layout_weight="93"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0px"
+        android:layout_weight="7"
+        android:background="#FFFFFF"
+        android:weightSum="100"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:textSize="14dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:layout_weight="85"/>
+        <ImageButton
+            android:layout_width="0px"
+            android:background="@android:color/transparent"
+            android:layout_height="fill_parent"
+            android:src="@mipmap/ic_action_send_now"
+            android:layout_weight="15"/>
+
+    </LinearLayout>
+
+</LinearLayout>

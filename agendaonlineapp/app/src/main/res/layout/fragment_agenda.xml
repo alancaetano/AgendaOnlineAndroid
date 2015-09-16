@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center" >
+
+        <ListView android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+
+            android:dividerHeight="1sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="#2B6C4B"
+        android:gravity="right" >
+
+        <ImageButton
+            android:id="@+id/button_nova_conversa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#2B6C4B"
+            android:src="@mipmap/ic_novo_recado" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="agendaonline.agendaonlineapp.RecadoActivity">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:scrollbars="vertical"
+            tools:context="agendaonline.agendaonlineapp.RecadoActivity">
+
+            <TextView
+                style="@style/label_formulario"
+                android:text="@string/label_destinatarios" />
+
+            <EditText
+                android:id="@+id/edittext_destinatarios"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <EditText
+                android:id="@+id/edittext_mensagem"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:gravity="top|left"
+                android:lines="4"
+                android:minLines="4"
+                android:hint="@string/placeholder_mensagem"
+                android:maxLines="4"
+                android:scrollHorizontally="false"
+                android:scrollbars="vertical"
+                android:singleLine="false"
+                />
+
+            <EditText
+                android:id="@+id/edittext_resposta"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:gravity="top|left"
+                android:lines="4"
+                android:minLines="4"
+                android:hint="@string/placeholder_resposta"
+                android:maxLines="4"
+                android:scrollHorizontally="false"
+                android:scrollbars="vertical"
+                android:singleLine="false"
+                />
+
+            <Button
+                android:id="@+id/button_enviar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/botao_enviar"
+                android:background="#2B6C4B"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

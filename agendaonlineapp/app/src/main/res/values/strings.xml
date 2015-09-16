@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Agenda Online</string>
+
+    <!-- LoginActivity-->
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="placeholder_login">Login</string>
+    <string name="placeholder_senha">Senha</string>
+
+    <!-- fim LoginActivity-->
+
+    <!-- PrincipalActivity-->
+    <string name="title_activity_principal">Agenda Online</string>
+    <string name="action_settings">Configurações</string>
+    <string name="action_about">Sobre</string>
+    <string name="action_informacoes_adicionais">Informações adicionais</string>
+    <!-- fim PrincipalActivity-->
+
+    <!-- AlunoFragment-->
+    <string name="label_nome_aluno">Nome do aluno</string>
+    <string name="label_turma">Turma</string>
+    <string name="label_nome_professor">Professor(a)</string>
+    <!-- fim AlunoFragment-->
+    <!-- InformacoesAdicionaisActivity-->
+    <string name="label_nome_responsavel">Nome do responsável</string>
+    <string name="label_telefone_responsavel">Telefone do responsável</string>
+    <string name="label_contatos_emergenciais">Contatos para emergências</string>
+    <string name="label_observacoes_aluno">Observações sobre o aluno</string>
+    <string name="title_activity_informacoes_adicionais">InformacoesAdicionaisActivity</string>
+    <string name="botao_action_bar_salvar">Salvar</string>
+    <string name="botao_action_bar_cancelar">Cancelar</string>
+    <string name="hello_world">Hello world!</string>
+    <!-- fim InformacoesAdicionaisActivity-->
+
+    <!-- RecadoActivity-->
+    <string name="label_destinatarios">Para </string>
+    <string name="placeholder_mensagem">Mensagem...</string>
+    <string name="placeholder_resposta">Responder...</string>
+    <string name="botao_enviar">Enviar</string>
+    <string name="botao_responder">Responder</string>
+    <string name="title_activity_recado">Novo recado</string>
+    <string name="title_activity_chat">ChatActivity</string>
+    <string name="title_activity_selecionar_contato">SelecionarContatoActivity</string>
+
+    <!-- fim RecadoActivity-->
+
+</resources>

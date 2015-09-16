@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="agendaonline.agendaonlineapp.PrincipalActivity">
+    <item android:id="@+id/action_informacoes_adicionais"
+        android:icon="@mipmap/ic_action_settings"
+        android:title="@string/action_informacoes_adicionais" />
+    <item android:id="@+id/action_settings"
+        android:icon="@mipmap/ic_action_settings"
+        android:title="@string/action_settings" />
+    <item android:id="@+id/action_about"
+        android:icon="@mipmap/ic_action_about"
+        android:title="@string/action_about" />
+</menu>
