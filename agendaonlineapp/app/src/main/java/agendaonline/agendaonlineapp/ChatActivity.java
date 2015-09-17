@@ -29,25 +29,6 @@ public class ChatActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        Mensagem msg = new Mensagem();
-        msg.setNomeRemetente("professor");
-        msg.setDataEnvio(new java.util.Date());
-        msg.setTexto("mensagem do professor...");
-
-        Mensagem msg2 = new Mensagem();
-        msg2.setNomeRemetente("pai");
-        msg2.setDataEnvio(new java.util.Date());
-        msg2.setTexto("mensagem do pai...");
-
-        Conversa c = new Conversa();
-        c.setMensagens(new ArrayList<Mensagem>());
-        c.getMensagens().add(msg);
-        c.getMensagens().add(msg2);
-
-        c.setNomeRemetente("professor");
-
-        conversa = c;
-
         this.listView = (ListView)findViewById(R.id.lista_chat);
 
         this.setTitle(conversa.getNomeRemetente());
@@ -55,37 +36,6 @@ public class ChatActivity extends ActionBarActivity {
         ChatListViewAdapter adapter = new ChatListViewAdapter(this, conversa);
         this.listView.setAdapter(adapter);
 
-
-        //mock
-        /*Usuario u = new Usuario();
-        u.setUsuarioID("1");
-        u.setNome("Alan Nunes");
-
-        Usuario u2 = new Usuario();
-        u2.setUsuarioID("2");
-        u2.setNome("Professora");
-
-        this.conversa = new Conversa();
-        conversa.setRemetente(u2);
-
-        Mensagem m1 = new Mensagem();
-        m1.setUsuario(u2);
-        m1.setMensagem("mensagem do professor...");
-        m1.setDataEnvio(new Date());
-
-        Mensagem m2 = new Mensagem();
-        m2.setUsuario(u);
-        m2.setMensagem("mensagem do Alan...");
-        m2.setDataEnvio(new Date());
-
-        List<Mensagem> msgs = new ArrayList<Mensagem>();
-        msgs.add(m1);
-        msgs.add(m2);
-
-        conversa.setMensagens(msgs);
-
-        //fim do mock
-*/
     }
 
     @Override

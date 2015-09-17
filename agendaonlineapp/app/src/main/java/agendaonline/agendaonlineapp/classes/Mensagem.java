@@ -9,7 +9,7 @@ public class Mensagem {
     public static final String TABELA = "conversa";
     public static final String COLUNA_ID = "id";
     public static final String COLUNA_ID_CONVERSA = "id_conversa";
-    public static final String COLUNA_NOME_REMETENTE = "nome_remetente";
+    public static final String COLUNA_ID_REMETENTE = "id_remetente";
     public static final String COLUNA_TEXTO = "texto";
     public static final String COLUNA_DATA_ENVIO = "dt_envio";
     public static final String COMANDO_CRIACAO = "create table "+ TABELA + " ("+
@@ -17,11 +17,12 @@ public class Mensagem {
                                                     COLUNA_ID_CONVERSA + " TEXT " +
                                                     COLUNA_TEXTO + " TEXT " +
                                                     COLUNA_DATA_ENVIO + " TEXT " +
-                                                    COLUNA_NOME_REMETENTE + " TEXT )";
+                                                    COLUNA_ID_REMETENTE + " TEXT )";
     public static final String COMANDO_DELECAO = "drop table "+ TABELA;
 
     private String id;
     private String idConversa;
+    private String idRemetente;
     private String nomeRemetente;
     private String texto;
     private Date dataEnvio;
@@ -42,11 +43,20 @@ public class Mensagem {
         this.idConversa = idConversa;
     }
 
-    public String getNomeRemetente(){
-        return nomeRemetente;
+    public String getIdRemetente(){
+        return idRemetente;
     }
 
-    public void setNomeRemetente(String nomeRemetente){
+    public void setIdRemetente(String idRemetente){
+        this.idRemetente = idRemetente;
+    }
+
+    public String getNomeRemetente() {
+        return this.nomeRemetente;
+    }
+
+    public void setNomeRemetente(String nomeRemetente)
+    {
         this.nomeRemetente = nomeRemetente;
     }
 

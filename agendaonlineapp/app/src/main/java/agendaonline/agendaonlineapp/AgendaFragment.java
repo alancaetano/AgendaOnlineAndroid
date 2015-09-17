@@ -125,7 +125,7 @@ public class AgendaFragment extends Fragment {
                 Conversa conversa = conversas.get(position);
                 Bundle b = new Bundle();
                 b.putString(Conversa.COLUNA_ID, conversa.getId());
-                b.putString(Conversa.COLUNA_NOME_REMETENTE, conversa.getNomeRemetente());
+                b.putString(Usuario.COLUNA_NOME, conversa.getNomeRemetente());
                 it.putExtras(b);
                 startActivity(it);
             }
@@ -135,34 +135,11 @@ public class AgendaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(v.getContext(), ChatActivity.class);
-                Conversa conversa = new Conversa();
-                Bundle b = new Bundle();
-                b.putString(Conversa.COLUNA_ID, conversa.getId());
-                b.putString(Conversa.COLUNA_NOME_REMETENTE, conversa.getNomeRemetente());
-                it.putExtras(b);
                 startActivity(it);
             }
         });
 
-        Conversa c = new Conversa();
-        c.setNomeRemetente("professor");
 
-        Mensagem msg = new Mensagem();
-        msg.setNomeRemetente("professor");
-        msg.setDataEnvio(new java.util.Date());
-        msg.setTexto("mensagem do professor...");
-
-        Mensagem msg2 = new Mensagem();
-        msg2.setNomeRemetente("pai");
-        msg2.setDataEnvio(new java.util.Date());
-        msg2.setTexto("mensagem do pai...");
-
-        c.setMensagens(new ArrayList<Mensagem>());
-        c.getMensagens().add(msg);
-        c.getMensagens().add(msg2);
-
-        conversas = new ArrayList<Conversa>();
-        conversas.add(c);
         AgendaListViewAdapter adapter = new AgendaListViewAdapter(this.getActivity(), conversas);
         this.listView = (ListView)getView().findViewById(R.id.list);
         this.listView.setAdapter(adapter);

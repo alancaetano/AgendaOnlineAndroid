@@ -4,16 +4,15 @@ package agendaonline.agendaonlineapp.classes;
  * Created by AlanNunes on 23/07/2015.
  */
 public class Usuario {
-    private String usuarioID;
+    private String id;
     private String nome;
-    private TipoUsuario tipoUsuario;
 
-    public String getUsuarioID(){
-        return this.usuarioID;
+    public String getId(){
+        return this.id;
     }
 
-    public void setUsuarioID(String usuarioID){
-        this.usuarioID = usuarioID;
+    public void setId(String id){
+        this.id = id;
     }
 
     public String getNome(){
@@ -24,13 +23,14 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public TipoUsuario getTipoUsuario(){
-        return this.tipoUsuario;
-    }
+    public static final String TABELA = "usuario";
+    public static final String COLUNA_ID = "id";
+    public static final String COLUNA_NOME = "nome";
 
-    public void setTipoUsuario(TipoUsuario tipoUsuario){
-        this.tipoUsuario = tipoUsuario;
-    }
+    public static final String COMANDO_CRIACAO = "create table "+ TABELA + " ("+
+            COLUNA_ID + " TEXT PRIMARY KEY," +
+            COLUNA_NOME + " TEXT  )";
+    public static final String COMANDO_DELECAO = "drop table "+ TABELA;
 }
 
 

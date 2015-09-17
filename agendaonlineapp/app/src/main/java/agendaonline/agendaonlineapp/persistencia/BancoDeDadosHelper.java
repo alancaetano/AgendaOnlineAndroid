@@ -12,6 +12,7 @@ import java.util.List;
 import agendaonline.agendaonlineapp.Util;
 import agendaonline.agendaonlineapp.classes.Conversa;
 import agendaonline.agendaonlineapp.classes.Mensagem;
+import agendaonline.agendaonlineapp.classes.Usuario;
 
 /**
  * Created by AlanNunes on 30/08/2015.
@@ -21,8 +22,8 @@ public class BancoDeDadosHelper extends SQLiteOpenHelper {
     public static final int VERSAO = 1;
     public static final String NOME_BANCO = "base_app.db";
 
-    public static final String[] COMANDOS_CRIACAO = new String[]{Conversa.COMANDO_CRIACAO, Mensagem.COMANDO_CRIACAO};
-    public static final String[] COMANDOS_DELECAO = new String[]{Mensagem.COMANDO_DELECAO, Conversa.COMANDO_DELECAO};
+    public static final String[] COMANDOS_CRIACAO = new String[]{Usuario.COMANDO_CRIACAO, Conversa.COMANDO_CRIACAO, Mensagem.COMANDO_CRIACAO};
+    public static final String[] COMANDOS_DELECAO = new String[]{Mensagem.COMANDO_DELECAO, Conversa.COMANDO_DELECAO, Usuario.COMANDO_DELECAO};
 
     public BancoDeDadosHelper(Context context) {
         super(context, NOME_BANCO, null, VERSAO);
@@ -48,7 +49,7 @@ public class BancoDeDadosHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(Conversa.COLUNA_ID, conversa.getId());
-        values.put(Conversa.COLUNA_NOME_REMETENTE, conversa.getNomeRemetente());
+        values.put(Conversa.COLUNA_ID_REMETENTE, conversa.getIdRemetente());
 
         db.insert(Conversa.TABELA, null, values);
 
@@ -64,44 +65,46 @@ public class BancoDeDadosHelper extends SQLiteOpenHelper {
         values.put(Mensagem.COLUNA_ID, mensagem.getId());
         values.put(Mensagem.COLUNA_ID_CONVERSA, conversaId);
         values.put(Mensagem.COLUNA_DATA_ENVIO, Util.ConverterDataParaSQLite(mensagem.getDataEnvio()));
-        values.put(Mensagem.COLUNA_NOME_REMETENTE, mensagem.getNomeRemetente());
+        values.put(Mensagem.COLUNA_ID_REMETENTE, mensagem.getIdRemetente());
         values.put(Mensagem.COLUNA_TEXTO, mensagem.getTexto());
 
         db.insert(Conversa.TABELA, null, values);
     }
 
-    public List<Conversa> RecuperarConversas(){
+    public List<Usuario> RecuperarUsuarios(){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(false, Conversa.TABELA, new String[]{Conversa.COLUNA_ID, Conversa.COLUNA_NOME_REMETENTE}, null, null, null, null, null, null, null);
+        String query = "select id, nome from usuario ";
 
-        List<Conversa> conversas = new ArrayList<Conversa>();
+        Cursor cursor = db.rawQuery(query, new String[]{});
+
+        List<Usuario> usuarios = new ArrayList<Usuario>();
         while(cursor.moveToNext()){
-            Conversa conversa = new Conversa();
-            conversa.setId(cursor.getString(0));
-            conversa.setNomeRemetente(cursor.getString(1));
-            conversas.add(conversa);
+            Usuario usuario = new Usuario();
+            usuario.setId(cursor.getString(0));
+            usuario.setNome(cursor.getString(1));
+            usuarios.add(usuario);
         }
 
-        return conversas;
+        return usuarios;
     }
 
-    public List<Mensagem> RecuperarMensagens(){
+    public List<Mensagem> RecuperarMensagens(String idConversa){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(false, Mensagem.TABELA, new String[]{
-                                        Mensagem.COLUNA_ID,
-                                        Mensagem.COLUNA_ID_CONVERSA,
-                                        Mensagem.COLUNA_DATA_ENVIO,
-                                        Mensagem.COLUNA_NOME_REMETENTE,
-                                        Mensagem.COLUNA_TEXTO}, null, null, null, null, null, null, null);
+        String query = "select m.id, m.dt_envio, m.id_remetente, m.texto, u.nome " +
+                        " from mensagem m " +
+                        " join usuario u on m.id_remetente = u.id " +
+                        " where m.id_conversa = ? ";
+
+        Cursor cursor = db.rawQuery(query, new String[]{idConversa});
 
         List<Mensagem> mensagens = new ArrayList<Mensagem>();
         while(cursor.moveToNext()){
             Mensagem msg = new Mensagem();
             msg.setId(cursor.getString(0));
-            msg.setIdConversa(cursor.getString(1));
-            msg.setDataEnvio(Util.ConverterTextSQLiteParaData(cursor.getString(2)));
-            msg.setNomeRemetente(cursor.getString(3));
-            msg.setTexto(cursor.getString(4));
+            msg.setDataEnvio(Util.ConverterTextSQLiteParaData(cursor.getString(1)));
+            msg.setIdRemetente(cursor.getString(2));
+            msg.setTexto(cursor.getString(3));
+            msg.setNomeRemetente(cursor.getString(4));
             mensagens.add(msg);
         }
 

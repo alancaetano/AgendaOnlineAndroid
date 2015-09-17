@@ -8,13 +8,14 @@ import java.util.List;
 public class Conversa {
     public static final String TABELA = "conversa";
     public static final String COLUNA_ID = "id";
-    public static final String COLUNA_NOME_REMETENTE = "nome_remetente";
+    public static final String COLUNA_ID_REMETENTE = "id_remetente";
     public static final String COMANDO_CRIACAO = "create table "+ TABELA + " ("+
                                                     COLUNA_ID + " TEXT PRIMARY KEY," +
-                                                    COLUNA_NOME_REMETENTE + " TEXT )";
+                                                    COLUNA_ID_REMETENTE + " TEXT )";
     public static final String COMANDO_DELECAO = "drop table "+ TABELA;
 
     private String id;
+    private String idRemetente;
     private String nomeRemetente;
     private List<Mensagem> mensagens;
 
@@ -24,6 +25,15 @@ public class Conversa {
 
     public void setId(String id){
         this.id = id;
+    }
+
+    public String getIdRemetente() {
+        return this.idRemetente;
+    }
+
+    public void setIdRemetente(String idRemetente)
+    {
+        this.idRemetente = idRemetente;
     }
 
     public String getNomeRemetente() {

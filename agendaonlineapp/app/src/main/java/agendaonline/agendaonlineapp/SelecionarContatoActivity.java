@@ -1,21 +1,26 @@
 package agendaonline.agendaonlineapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import java.util.List;
 
-import agendaonline.agendaonlineapp.classes.Contato;
+import agendaonline.agendaonlineapp.classes.Conversa;
+import agendaonline.agendaonlineapp.classes.Usuario;
+import agendaonline.agendaonlineapp.persistencia.BancoDeDadosHelper;
 
 
 public class SelecionarContatoActivity extends ActionBarActivity {
 
     private ListView listView;
-    private List<Contato> contatos;
+    private List<Usuario> contatos;
+    private BancoDeDadosHelper bd = new BancoDeDadosHelper(this.getApplicationContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +29,30 @@ public class SelecionarContatoActivity extends ActionBarActivity {
 
         this.listView = (ListView)findViewById(R.id.lista_contatos);
 
+        this.contatos = bd.RecuperarUsuarios();
         SelecionarContatoListViewAdapter adapter = new SelecionarContatoListViewAdapter(this, contatos);
         this.listView.setAdapter(adapter);
+
+        this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Usuario usuario = contatos.get(position);
+
+                String idConversa = Util.GerarID();
+                Conversa conv = new Conversa();
+                conv.setId(idConversa);
+                conv.setIdRemetente(usuario.getId());
+                bd.InserirConversa(conv);
+
+                Intent it = new Intent(view.getContext(), ChatActivity.class);
+                Bundle b = new Bundle();
+                b.putString(Conversa.COLUNA_ID, idConversa );
+                b.putString(Conversa.COLUNA_ID_REMETENTE, usuario.getId());
+                b.putString(Usuario.COLUNA_NOME, usuario.getNome());
+                it.putExtras(b);
+                startActivity(it);
+            }
+        });
     }
 
     @Override

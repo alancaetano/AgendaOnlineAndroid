@@ -9,15 +9,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import agendaonline.agendaonlineapp.classes.Contato;
-import agendaonline.agendaonlineapp.classes.Conversa;
+import agendaonline.agendaonlineapp.classes.Usuario;
 
 public class SelecionarContatoListViewAdapter extends BaseAdapter
 {
     private LayoutInflater mInflater;
-    private List<Contato> contatos;
+    private List<Usuario> contatos;
 
-    public SelecionarContatoListViewAdapter(Context context, List<Contato> contatos)
+    public SelecionarContatoListViewAdapter(Context context, List<Usuario> contatos)
     {
         this.contatos = contatos;
         mInflater = LayoutInflater.from(context);
@@ -44,7 +43,7 @@ public class SelecionarContatoListViewAdapter extends BaseAdapter
             convertView = mInflater.inflate(R.layout.celula_listview_selecionar_contato, null);
         }
 
-        Contato contato = this.contatos.get(position);
+        Usuario contato = this.contatos.get(position);
         ((TextView) convertView.findViewById(R.id.label_contato)).setText(contato.getNome());
         return convertView;
     }
