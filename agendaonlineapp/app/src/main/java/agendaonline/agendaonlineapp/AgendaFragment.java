@@ -19,6 +19,7 @@ import java.util.List;
 import agendaonline.agendaonlineapp.classes.Conversa;
 import agendaonline.agendaonlineapp.classes.Mensagem;
 import agendaonline.agendaonlineapp.classes.Usuario;
+import agendaonline.agendaonlineapp.persistencia.BancoDeDadosHelper;
 
 
 /**
@@ -115,6 +116,9 @@ public class AgendaFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        BancoDeDadosHelper bd = new BancoDeDadosHelper(this.getActivity().getApplicationContext());
+        conversas = bd.RecuperarConversas();
+
         this.buttonNovaConversa = (ImageButton)this.getActivity().findViewById(R.id.button_nova_conversa);
 
         this.listView = (ListView)this.getActivity().findViewById(R.id.list);
@@ -134,11 +138,10 @@ public class AgendaFragment extends Fragment {
         this.buttonNovaConversa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(v.getContext(), ChatActivity.class);
+                Intent it = new Intent(v.getContext(), SelecionarContatoActivity.class);
                 startActivity(it);
             }
         });
-
 
         AgendaListViewAdapter adapter = new AgendaListViewAdapter(this.getActivity(), conversas);
         this.listView = (ListView)getView().findViewById(R.id.list);

@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by AlanNunes on 09/08/2015.
  */
 public class Mensagem {
-    public static final String TABELA = "conversa";
+    public static final String TABELA = "mensagem";
     public static final String COLUNA_ID = "id";
     public static final String COLUNA_ID_CONVERSA = "id_conversa";
     public static final String COLUNA_ID_REMETENTE = "id_remetente";

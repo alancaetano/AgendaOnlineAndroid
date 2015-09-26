@@ -29,10 +29,21 @@ public class BancoDeDadosHelper extends SQLiteOpenHelper {
         super(context, NOME_BANCO, null, VERSAO);
     }
     public void onCreate(SQLiteDatabase db) {
+
         for(int i = 0; i < COMANDOS_CRIACAO.length; i++) {
             db.execSQL(COMANDOS_CRIACAO[i]);
         }
+
+        PopularBase(db);
     }
+
+    public void PopularBase(SQLiteDatabase db){
+        Usuario usuario = new Usuario();
+        usuario.setId("1");
+        usuario.setNome("Professor Fulano");
+        InserirUsuario(usuario, db);
+    }
+
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         for(int i = 0; i < COMANDOS_DELECAO.length; i++) {
             db.execSQL(COMANDOS_DELECAO[i]);
@@ -69,6 +80,27 @@ public class BancoDeDadosHelper extends SQLiteOpenHelper {
         values.put(Mensagem.COLUNA_TEXTO, mensagem.getTexto());
 
         db.insert(Conversa.TABELA, null, values);
+    }
+
+    public void InserirUsuario(Usuario usuario, SQLiteDatabase db){
+
+        ContentValues values = new ContentValues();
+        values.put(Usuario.COLUNA_ID, usuario.getId());
+        values.put(Usuario.COLUNA_NOME, usuario.getNome());
+
+        db.insert(Usuario.TABELA, null, values);
+
+    }
+
+    public void InserirUsuario(Usuario usuario){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Usuario.COLUNA_ID, usuario.getId());
+        values.put(Usuario.COLUNA_NOME, usuario.getNome());
+
+        db.insert(Usuario.TABELA, null, values);
+
     }
 
     public List<Usuario> RecuperarUsuarios(){
@@ -109,5 +141,25 @@ public class BancoDeDadosHelper extends SQLiteOpenHelper {
         }
 
         return mensagens;
+    }
+
+    public List<Conversa> RecuperarConversas(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select c.id, c.id_remetente, u.nome " +
+                " from conversa c " +
+                " join usuario u on c.id_remetente = u.id ";
+
+        Cursor cursor = db.rawQuery(query, new String[]{});
+
+        List<Conversa> conversas = new ArrayList<Conversa>();
+        while(cursor.moveToNext()){
+            Conversa conversa = new Conversa();
+            conversa.setId(cursor.getString(0));
+            conversa.setIdRemetente(cursor.getString(1));
+            conversa.setNomeRemetente(cursor.getString(2));
+            conversas.add(conversa);
+        }
+
+        return conversas;
     }
 }

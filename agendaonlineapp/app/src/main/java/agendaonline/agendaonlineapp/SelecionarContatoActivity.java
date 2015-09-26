@@ -20,11 +20,12 @@ public class SelecionarContatoActivity extends ActionBarActivity {
 
     private ListView listView;
     private List<Usuario> contatos;
-    private BancoDeDadosHelper bd = new BancoDeDadosHelper(this.getApplicationContext());
+    private BancoDeDadosHelper bd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bd = new BancoDeDadosHelper(this.getApplicationContext());
         setContentView(R.layout.activity_selecionar_contato);
 
         this.listView = (ListView)findViewById(R.id.lista_contatos);
