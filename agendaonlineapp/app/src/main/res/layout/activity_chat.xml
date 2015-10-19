@@ -26,6 +26,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/edittext_msg_chat"
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:background="#FFFFFF"
@@ -34,6 +35,7 @@
             android:paddingRight="6dp"
             android:layout_weight="85"/>
         <ImageButton
+            android:id="@+id/button_enviar_msg"
             android:layout_width="0px"
             android:background="@android:color/transparent"
             android:layout_height="fill_parent"

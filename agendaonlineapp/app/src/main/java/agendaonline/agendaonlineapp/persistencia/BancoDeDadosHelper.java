@@ -19,7 +19,7 @@ import agendaonline.agendaonlineapp.classes.Usuario;
  */
 public class BancoDeDadosHelper extends SQLiteOpenHelper {
 
-    public static final int VERSAO = 1;
+    public static final int VERSAO = 2;
     public static final String NOME_BANCO = "base_app.db";
 
     public static final String[] COMANDOS_CRIACAO = new String[]{Usuario.COMANDO_CRIACAO, Conversa.COMANDO_CRIACAO, Mensagem.COMANDO_CRIACAO};
@@ -64,17 +64,19 @@ public class BancoDeDadosHelper extends SQLiteOpenHelper {
 
         db.insert(Conversa.TABELA, null, values);
 
-        for(int i = 0; i < conversa.getMensagens().size(); i++){
-            this.InserirMensagem(conversa.getMensagens().get(i), conversa.getId());
+        if(conversa.getMensagens() != null) {
+            for (int i = 0; i < conversa.getMensagens().size(); i++) {
+                this.InserirMensagem(conversa.getMensagens().get(i));
+            }
         }
     }
 
-    public void InserirMensagem(Mensagem mensagem, String conversaId){
+    public void InserirMensagem(Mensagem mensagem){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(Mensagem.COLUNA_ID, mensagem.getId());
-        values.put(Mensagem.COLUNA_ID_CONVERSA, conversaId);
+        values.put(Mensagem.COLUNA_ID_CONVERSA, mensagem.getIdConversa());
         values.put(Mensagem.COLUNA_DATA_ENVIO, Util.ConverterDataParaSQLite(mensagem.getDataEnvio()));
         values.put(Mensagem.COLUNA_ID_REMETENTE, mensagem.getIdRemetente());
         values.put(Mensagem.COLUNA_TEXTO, mensagem.getTexto());

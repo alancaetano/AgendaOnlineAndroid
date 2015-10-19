@@ -39,7 +39,7 @@
     <string name="botao_responder">Responder</string>
     <string name="title_activity_recado">Novo recado</string>
     <string name="title_activity_chat">ChatActivity</string>
-    <string name="title_activity_selecionar_contato">SelecionarContatoActivity</string>
+    <string name="title_activity_selecionar_contato">Contatos</string>
 
     <!-- fim RecadoActivity-->
 

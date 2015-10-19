@@ -14,9 +14,9 @@ public class Mensagem {
     public static final String COLUNA_DATA_ENVIO = "dt_envio";
     public static final String COMANDO_CRIACAO = "create table "+ TABELA + " ("+
                                                     COLUNA_ID + " TEXT PRIMARY KEY," +
-                                                    COLUNA_ID_CONVERSA + " TEXT " +
-                                                    COLUNA_TEXTO + " TEXT " +
-                                                    COLUNA_DATA_ENVIO + " TEXT " +
+                                                    COLUNA_ID_CONVERSA + " TEXT, " +
+                                                    COLUNA_TEXTO + " TEXT, " +
+                                                    COLUNA_DATA_ENVIO + " TEXT, " +
                                                     COLUNA_ID_REMETENTE + " TEXT )";
     public static final String COMANDO_DELECAO = "drop table "+ TABELA;
 
